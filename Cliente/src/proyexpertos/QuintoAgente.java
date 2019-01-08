@@ -208,7 +208,7 @@ public class QuintoAgente extends Agent {
                     vCliente.mostrarMensaje("Cliente entrega ticket al vendedor. ");
                     vCliente.mostrarMensaje("Vendedor recibe la ticket del cliente.");
 
-                    vCliente.mostrarMensaje("\n¿Desea medicina genérica(1) o de patente(2)?");
+                    vCliente.mostrarMensaje("\n¿Desea que sea clasico(1) o Formal(2)?");
 
                     do {
                         esperaRespuesta();
@@ -259,7 +259,7 @@ public class QuintoAgente extends Agent {
                         cambio = Integer.parseInt(msjString) + 100;
                         vCliente.mostrarMensaje("Total a pagar $" + cambio);
 
-                        vCliente.mostrarMensaje("Por favor ingrese la cantidad para pagar (20, 50, 100, 200, etc.).");
+                        vCliente.mostrarMensaje("Por favor ingrese la cantidad para pagar $$$");
 
                         do {
                             esperaRespuesta();
@@ -284,7 +284,7 @@ public class QuintoAgente extends Agent {
                         int cambio2 = cambio;
                         vCliente.mostrarMensaje("Cliente paga $" + cambio + " al cajero.");
 
-                        cambio = vCliente.getOpcion() - Integer.parseInt(msjString) - 400;
+                        cambio = vCliente.getOpcion() - Integer.parseInt(msjString) - 100;
                         vCliente.mostrarMensaje("Cliente recibe $" + cambio + " de cambio.");
 
                         vServidor.mostrarMensaje("\nCajero recibe pago del ciente por $" + cambio2);
