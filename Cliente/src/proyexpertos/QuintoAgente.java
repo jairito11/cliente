@@ -322,7 +322,8 @@ public class QuintoAgente extends Agent {
                             jarabes--;
                             conexion.setCantidad("Jarabe", jarabes);
                             conexion.setVendidos("Jarabe", conexion.getVendidos("Jarabe") + 1);
-                            costoTotal = costoTotal + 550;}
+                            costoTotal = costoTotal + 550;
+                        }
                         
                         else if (msjString.equals("600")) // Jarabe generico
                         {
@@ -400,13 +401,13 @@ public class QuintoAgente extends Agent {
                     if (mensaje != null) {
                         do {
                             vCliente.mostrarMensaje("\nVendedor muestra catalogo de productos:");
-                            vCliente.mostrarMensaje("     1.- Camisa clasica $500.");
-                            vCliente.mostrarMensaje("     2.- Camisa formal $550.");
-                            vCliente.mostrarMensaje("     3.- Pantalon clasico $600.");
+                            vCliente.mostrarMensaje("     1.- Camisas: Camisa clasica $500, Camisa formal $550.");
+                            vCliente.mostrarMensaje("     2.- Pantalón: Pantalon clasico $600, Pantalon formal $650.");
+                            vCliente.mostrarMensaje("     3.- Zapatos: Zapatos clasicos $1000, Zapatos formales $1200.");
+                            /*
                             vCliente.mostrarMensaje("     4.- Pantalon formal $650.");
                             vCliente.mostrarMensaje("     5.- Zapatos clasicos $1000.");
                             vCliente.mostrarMensaje("     6.- Zapatos formales $1200");
-                            /*
                             vCliente.mostrarMensaje("     7.- Labial.");
                             vCliente.mostrarMensaje("     8.- Maquillaje.");
                             vCliente.mostrarMensaje("     9.- Gasas.");
@@ -414,7 +415,7 @@ public class QuintoAgente extends Agent {
                             vCliente.mostrarMensaje("     11.- Cubrebocas.");
                             vCliente.mostrarMensaje("     12.- Curitas.");*/
                             if (masDeUnProd != 0) {
-                                vCliente.mostrarMensaje("     7.- Continuar.");
+                                vCliente.mostrarMensaje("     4.- Continuar.");
                             }
                             masDeUnProd++;
                             vCliente.mostrarMensaje("Ingrese su opción: ");
@@ -422,10 +423,10 @@ public class QuintoAgente extends Agent {
                             do {
                                 esperaRespuesta();
                                 vCliente.setDioEnter(0); // Renueva el que no se ha dado enter para una siguiente nueva entrada
-                                if (vCliente.getOpcion() < 1 || vCliente.getOpcion() > 7) {
+                                if (vCliente.getOpcion() < 1 || vCliente.getOpcion() > 4) {
                                     JOptionPane.showMessageDialog(null, vCliente.getOpcion() + " no está en el rango permitido, vuelva a intentar.", "Error", JOptionPane.ERROR_MESSAGE);
                                 }
-                            } while (vCliente.getOpcion() < 1 || vCliente.getOpcion() > 7);
+                            } while (vCliente.getOpcion() < 1 || vCliente.getOpcion() > 4);
 
                             opcion = vCliente.getOpcion();
 
@@ -509,61 +510,61 @@ public class QuintoAgente extends Agent {
 
                             costoTotal = costoTotal + costo;
 
-                            if (costo == 100) // Jarabe generico
+                            if (costo == 500) // Jarabe generico
                             {
-                                ticket = ticket + " Medicina: Jarabe \n";
-                                ticket = ticket + " Costo: $100\n";
-                                ticket = ticket + " Producto genérico\n";
+                                ticket = ticket + " Ropa: Camisa clasica \n";       //camisas1
+                                ticket = ticket + " Costo: $500\n";
+                                ticket = ticket + " Producto \n";
                                 jarabes--;
                                 conexion.setCantidad("Jarabe", jarabes);
                                 conexion.setVendidos("Jarabe", conexion.getVendidos("Jarabe") + 1);
-                            } else if (costo == 200) // Jarabe generico
+                            } else if (costo == 550) // Jarabe generico
                             {
-                                ticket = ticket + " Medicina: Jarabe \n";
-                                ticket = ticket + " Costo: $200\n";
-                                ticket = ticket + " Producto patente\n";
+                                ticket = ticket + " Ropa: Camisa formal\n";         //camisas2
+                                ticket = ticket + " Costo: 550\n";
+                                ticket = ticket + " Producto\n";
                                 jarabes--;
                                 conexion.setCantidad("Jarabe", jarabes);
                                 conexion.setVendidos("Jarabe", conexion.getVendidos("Jarabe") + 1);
-                            } else if (costo == 220) // Jarabe generico
+                            } else if (costo == 600) // Jarabe generico
                             {
-                                ticket = ticket + " Medicina: Omeprazol \n";
-                                ticket = ticket + " Costo: $220\n";
-                                ticket = ticket + " Producto genérico\n";
+                                ticket = ticket + " Ropa: pantalon clasico\n";      //pantalon1
+                                ticket = ticket + " Costo: $600\n";
+                                ticket = ticket + " Producto \n";
                                 omeprazoles--;
                                 conexion.setCantidad("Omeprazol", omeprazoles);
                                 conexion.setVendidos("Omeprazol", conexion.getVendidos("Omeprazol") + 1);
-                            } else if (costo == 340) // Jarabe generico
+                            } else if (costo == 650) // Jarabe generico
                             {
-                                ticket = ticket + " Medicina: Omeprazol \n";
-                                ticket = ticket + " Costo: $340\n";
-                                ticket = ticket + " Producto patente\n";
+                                ticket = ticket + " Ropa: pantalon formal\n";      //pantalon2
+                                ticket = ticket + " Costo: $650\n";
+                                ticket = ticket + " Producto \n";
                                 omeprazoles--;
                                 conexion.setCantidad("Omeprazol", omeprazoles);
                                 conexion.setVendidos("Omeprazol", conexion.getVendidos("Omeprazol") + 1);
-                            } else if (costo == 180) // Jarabe generico
+                            } else if (costo == 1000) // Jarabe generico
                             {
-                                ticket = ticket + " Medicina: Naproxeno \n";
-                                ticket = ticket + " Costo: $180\n";
-                                ticket = ticket + " Producto genérico\n";
+                                ticket = ticket + " Ropa: Zapatos clasicos \n";     //zapatos1
+                                ticket = ticket + " Costo: $1000\n";
+                                ticket = ticket + " Producto\n";
                                 naproxenos--;
                                 conexion.setCantidad("Naproxeno", naproxenos);
                                 conexion.setVendidos("Naproxeno", conexion.getVendidos("Naproxeno") + 1);
-                            } else if (costo == 640) // Jarabe generico
+                            } else if (costo == 1200) // Jarabe generico
                             {
-                                ticket = ticket + " Medicina: Naproxeno \n";
-                                ticket = ticket + " Costo: $640\n";
-                                ticket = ticket + " Producto patente\n";
-                                naproxenos--;
-                                conexion.setCantidad("Naproxeno", naproxenos);
-                                conexion.setVendidos("Naproxeno", conexion.getVendidos("Naproxeno") + 1);
+                            ticket = ticket + " Ropa: Zapatos formales \n";     //zapatos1
+                            ticket = ticket + " Costo: $1200\n";
+                            ticket = ticket + " Producto\n";
+                            naproxenos--;
+                            conexion.setCantidad("Naproxeno", naproxenos);
+                            conexion.setVendidos("Naproxeno", conexion.getVendidos("Naproxeno") + 1);
                             } 
                             
-                        } while (opcion != 7);
+                        } while (opcion != 4);
 
-                        ticket = ticket + " Costo Total: " + costoTotal;
-                        vCliente.mostrarMensaje("\n\nPor favor pase con el cajero para que le cobren.");
-                        vCliente.mostrarMensaje("Termina interaccion con el vendedor.");
+                        ticket = ticket + " Costo Total: " + costoTotal;        //Calcula el costo total
+                        vCliente.mostrarMensaje("\n\nPor favor pase con el cajero para que le cobren.");//pasa a cobrar
+                        vCliente.mostrarMensaje("Termina interaccion con el vendedor.");//cajero
                         vCliente.mostrarMensaje("\n\nCliente va con el cajero");
 
                         try {
@@ -597,7 +598,7 @@ public class QuintoAgente extends Agent {
                         vCliente.setMensaje("\nCajero dice que el costo es de " + costoTotal);
                         vCliente.setEnviaMsj(1);
 
-                        vCliente.mostrarMensaje("Por favor ingrese la cantidad para pagar (20 50 100 200 500 1000).");
+                        vCliente.mostrarMensaje("Por favor ingrese la cantidad para pagar $$$");
 
                         do {
                             esperaRespuesta();
