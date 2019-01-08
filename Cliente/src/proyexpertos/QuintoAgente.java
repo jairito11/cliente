@@ -5,6 +5,7 @@ import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.*;
 import jade.lang.acl.ACLMessage;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -312,6 +313,7 @@ public class QuintoAgente extends Agent {
                             conexion.setCantidad("Jarabe", jarabes);
                             conexion.setVendidos("Jarabe", conexion.getVendidos("Jarabe") + 1);
                             costoTotal = costoTotal + 500;
+                            
                         } else if (msjString.equals("550")) // Jarabe generico
                         {
                             ticket = ticket + " Ropa: Camisa formal\n";         //camisas2
@@ -371,8 +373,8 @@ public class QuintoAgente extends Agent {
                     
                     // Termina consulta*****************************************************************************************
                 } else {
-                    // Opción 2 - Comprar medicinas
-                    vCliente.mostrarMensaje("El cliente pasa con el vendedor.");
+                    
+                    vCliente.mostrarMensaje("El cliente pasa con el vendedor.");//El cliente pasa con el vendedor 
 
                     vCliente.setVendedor();
                     AID id = new AID(); // No es el ID del emisor, es el ID del agente al que se va a enviar
@@ -398,20 +400,21 @@ public class QuintoAgente extends Agent {
                     if (mensaje != null) {
                         do {
                             vCliente.mostrarMensaje("\nVendedor muestra catalogo de productos:");
-                            vCliente.mostrarMensaje("     1.- Jarabe.");
-                            vCliente.mostrarMensaje("     2.- Omeprazol.");
-                            vCliente.mostrarMensaje("     3.- Naproxeno.");
-                            vCliente.mostrarMensaje("     4.- Shampoo.");
-                            vCliente.mostrarMensaje("     5.- Jabón de baño.");
-                            vCliente.mostrarMensaje("     6.- Toalla femenia.");
+                            vCliente.mostrarMensaje("     1.- Camisa clasica $500.");
+                            vCliente.mostrarMensaje("     2.- Camisa formal $550.");
+                            vCliente.mostrarMensaje("     3.- Pantalon clasico $600.");
+                            vCliente.mostrarMensaje("     4.- Pantalon formal $650.");
+                            vCliente.mostrarMensaje("     5.- Zapatos clasicos $1000.");
+                            vCliente.mostrarMensaje("     6.- Zapatos formales $1200");
+                            /*
                             vCliente.mostrarMensaje("     7.- Labial.");
                             vCliente.mostrarMensaje("     8.- Maquillaje.");
                             vCliente.mostrarMensaje("     9.- Gasas.");
                             vCliente.mostrarMensaje("     10.- Jeringas.");
                             vCliente.mostrarMensaje("     11.- Cubrebocas.");
-                            vCliente.mostrarMensaje("     12.- Curitas.");
+                            vCliente.mostrarMensaje("     12.- Curitas.");*/
                             if (masDeUnProd != 0) {
-                                vCliente.mostrarMensaje("     13.- Continuar.");
+                                vCliente.mostrarMensaje("     7.- Continuar.");
                             }
                             masDeUnProd++;
                             vCliente.mostrarMensaje("Ingrese su opción: ");
@@ -419,10 +422,10 @@ public class QuintoAgente extends Agent {
                             do {
                                 esperaRespuesta();
                                 vCliente.setDioEnter(0); // Renueva el que no se ha dado enter para una siguiente nueva entrada
-                                if (vCliente.getOpcion() < 1 || vCliente.getOpcion() > 13) {
+                                if (vCliente.getOpcion() < 1 || vCliente.getOpcion() > 7) {
                                     JOptionPane.showMessageDialog(null, vCliente.getOpcion() + " no está en el rango permitido, vuelva a intentar.", "Error", JOptionPane.ERROR_MESSAGE);
                                 }
-                            } while (vCliente.getOpcion() < 1 || vCliente.getOpcion() > 13);
+                            } while (vCliente.getOpcion() < 1 || vCliente.getOpcion() > 7);
 
                             opcion = vCliente.getOpcion();
 
@@ -431,7 +434,7 @@ public class QuintoAgente extends Agent {
 
                             // Compra medicina
                             if (vCliente.getOpcion() == 1 || vCliente.getOpcion() == 2 || vCliente.getOpcion() == 3) {
-                                vCliente.mostrarMensaje("\n\n ¿Medicina genérica(1) o de patente(2)?");
+                                vCliente.mostrarMensaje("\n¿Desea que sea clasico(1) o Formal(2)?");
 
                                 do {
                                     esperaRespuesta();
@@ -451,27 +454,28 @@ public class QuintoAgente extends Agent {
                                 case 1:
                                     if (vCliente.getOpcion() == 1) // generica
                                     {
-                                        costo = 100;
+                                        costo = 500;
                                     } else {
-                                        costo = 200;
+                                        costo = 550;
                                     }
                                     break;
                                 case 2:
                                     if (vCliente.getOpcion() == 1) // generica
                                     {
-                                        costo = 220;
+                                        costo = 600;
                                     } else {
-                                        costo = 340;
+                                        costo = 650;
                                     }
                                     break;
                                 case 3:
                                     if (vCliente.getOpcion() == 1) // generica
                                     {
-                                        costo = 180;
+                                        costo = 1000;
                                     } else {
-                                        costo = 640;
+                                        costo = 1200;
                                     }
                                     break;
+                                    /*
                                 case 4:
                                     costo = 55;
                                     break;
@@ -498,7 +502,7 @@ public class QuintoAgente extends Agent {
                                     break;
                                 case 12:
                                     costo = 3;
-                                    break;
+                                    break;*/
                                 default:
                                     break;
                             }
@@ -553,62 +557,9 @@ public class QuintoAgente extends Agent {
                                 naproxenos--;
                                 conexion.setCantidad("Naproxeno", naproxenos);
                                 conexion.setVendidos("Naproxeno", conexion.getVendidos("Naproxeno") + 1);
-                            } else if (costo == 55) {
-                                ticket = ticket + " Medicina: Shampoo \n";
-                                ticket = ticket + " Costo: $55\n";
-                                shampoos--;
-                                conexion.setCantidad("Shampoo", shampoos);
-                                conexion.setVendidos("Shampoo", conexion.getVendidos("Shampoo") + 1);
-                            } else if (costo == 20) {
-                                ticket = ticket + " Medicina: Jabón de baño \n";
-                                ticket = ticket + " Costo: $20\n";
-                                jabon--;
-                                conexion.setCantidad("Jabón de baño", jabon);
-                                conexion.setVendidos("Jabón de baño", conexion.getVendidos("Jabón de baño") + 1);
-                            } else if (costo == 60) {
-                                ticket = ticket + " Medicina: Toallas femeninas \n";
-                                ticket = ticket + " Costo: $60\n";
-                                toallas--;
-                                conexion.setCantidad("Toalla femenina", toallas);
-                                conexion.setVendidos("Toalla femenina", conexion.getVendidos("Toalla femenina") + 1);
-                            } else if (costo == 90) {
-                                ticket = ticket + " Medicina: Labial \n";
-                                ticket = ticket + " Costo: $90\n";
-                                labial--;
-                                conexion.setCantidad("Labial", labial);
-                                conexion.setVendidos("Labial", conexion.getVendidos("Labial") + 1);
-                            } else if (costo == 85) {
-                                ticket = ticket + " Medicina: Maquillaje \n";
-                                ticket = ticket + " Costo: $85\n";
-                                maquillaje--;
-                                conexion.setCantidad("Maquillaje", maquillaje);
-                                conexion.setVendidos("Maquillaje", conexion.getVendidos("Maquillaje") + 1);
-                            } else if (costo == 25) {
-                                ticket = ticket + " Medicina: Gasas \n";
-                                ticket = ticket + " Costo: $25\n";
-                                gasas--;
-                                conexion.setCantidad("Gasas", gasas);
-                                conexion.setVendidos("Gasas", conexion.getVendidos("Gasas") + 1);
-                            } else if (costo == 15) {
-                                ticket = ticket + " Medicina: Jeringas \n";
-                                ticket = ticket + " Costo: $15\n";
-                                jeringas--;
-                                conexion.setCantidad("Jeringas", jeringas);
-                                conexion.setVendidos("Jeringas", conexion.getVendidos("Jeringas") + 1);
-                            } else if (costo == 10) {
-                                ticket = ticket + " Medicina: Cubrebocas \n";
-                                ticket = ticket + " Costo: $10\n";
-                                cubrebocas--;
-                                conexion.setCantidad("Cubrebocas", cubrebocas);
-                                conexion.setVendidos("Cubrebocas", conexion.getVendidos("Cubrebocas") + 1);
-                            }else if(costo == 3){
-                                ticket = ticket + " Medicina: Curitas \n";
-                                ticket = ticket + " Costo: $3\n";
-                                curitas--;
-                                conexion.setCantidad("Curitas", curitas);
-                                conexion.setVendidos("Curitas", conexion.getVendidos("Curitas") + 1);
-                            }
-                        } while (opcion != 13);
+                            } 
+                            
+                        } while (opcion != 7);
 
                         ticket = ticket + " Costo Total: " + costoTotal;
                         vCliente.mostrarMensaje("\n\nPor favor pase con el cajero para que le cobren.");
@@ -691,8 +642,12 @@ public class QuintoAgente extends Agent {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////GeneraTicket
                 try {
                     generarPDF.genera(ticket, "Ticket", ruta);
+                    File f = new File(ruta);
+                    Desktop.getDesktop().open(f);
                 } catch (FileNotFoundException | DocumentException ex) {
                     System.out.println("-----Error al generar ticket ----- ");
+                } catch (IOException ex) {
+                    Logger.getLogger(QuintoAgente.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 /*File file = new File("c:/newfile.txt");

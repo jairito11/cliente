@@ -61,15 +61,15 @@ public class Medico extends Agent{
                         if( mensajeString.equals("1") ) // Camisas
                         {
                             //medicina = "Usted tiene tos, tome Jarabe";
-                            medicina = "El cuello inglés es tendencia en Camisas";
+                            medicina = "Camisa clasica $500, Camisa formal $550\nEl cuello inglés es tendencia en Camisas";
                         } else if( mensajeString.equals("2") ) // pantalones
                         {
                             //medicina = "Usted tiene gastritis, tome Omeprazol";
-                            medicina = "El corte recto es tendencia en Pantalones";
+                            medicina = "Pantalon clasico $600, Pantalon formal $650\nEl corte recto es tendencia en Pantalones";
                         } else // zapatos
                         {
                             //medicina = "Usted tiene inflamación que le causa dolor, tome Naproxeno";
-                            medicina = "El estilo Oxford liso es tendencia en Zapatos";
+                            medicina = "Zapatos clasicos $1000, Zapatos formales $1200\nEl estilo Oxford liso es tendencia en Zapatos";
                         }
                         
                         id = new AID(); // No es el ID del emisor, es el ID del agente al que se va a enviar
