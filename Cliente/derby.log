@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Tue Jan 08 11:24:58 CST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0168-2e7e-f057-000001d1d758 
+Tue Jan 08 13:04:47 CST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0168-2eda-5364-000001d69438 
 on database directory C:\Users\iron\Desktop\FinalSE\cliente\Cliente\baseTipos with class loader sun.misc.Launcher$AppClassLoader@4aa298b7 
 Loaded from file:/C:/Users/iron/Desktop/codigo/codigo/Cliente/ProyExpertosC/lib/derby.jar
 java.vendor=Oracle Corporation

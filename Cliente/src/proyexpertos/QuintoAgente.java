@@ -155,7 +155,7 @@ public class QuintoAgente extends Agent {
                     mensaje = blockingReceive();
                     if (mensaje != null) {
                         vCliente.setMedico();
-                        vCliente.mostrarMensaje("\nEl vendedor le mostrará las tallas disponibles\nSeleccione articulo: ");//
+                        vCliente.mostrarMensaje("\nEl vendedor le mostrará las tendencias de la temporada\nSeleccione articulo: ");//
                         vCliente.mostrarMensaje("    1.- camisas");             //
                         vCliente.mostrarMensaje("    2.- pantalones");          //
                         vCliente.mostrarMensaje("    3.- zapatos");             //
@@ -221,11 +221,11 @@ public class QuintoAgente extends Agent {
                     System.out.println("\nSu opción fue: " + vCliente.getOpcion());
                     vCliente.mostrarMensaje("\nSu opción fue: " + vCliente.getOpcion());//imprime la opcion seleccionada
 
-                    vCliente.mostrarMensaje("\nPor favor pase con el cajero para que le cobren.");
-                    vCliente.mostrarMensaje("Termina interacción con el vendedor.\n");
-                    vCliente.mostrarMensaje("Cliente va con el cajero.\n");
-                    vServidor.mostrarMensaje("El cliente llegó con el cajero.\n");
-                    vCliente.setMensaje("El cliente llegó con el cajero.\n");
+                    vCliente.mostrarMensaje("\nPor favor pase con el cajero para que le cobren.");//pasa al cobro 
+                    vCliente.mostrarMensaje("Termina interacción con el vendedor.\n");//termina la interaccion  
+                    vCliente.mostrarMensaje("Cliente va con el cajero.\n");     //cliente va con el cajero
+                    vServidor.mostrarMensaje("El cliente llegó con el cajero.\n");//llega al cajero
+                    vCliente.setMensaje("El cliente llegó con el cajero.\n");   //El cliente llega al cajero
                     vCliente.setEnviaMsj(1);
                     vCliente.setMensaje("El cliente llegó con el cajero.\n");
                     vCliente.setEnviaMsj(1);
@@ -238,28 +238,28 @@ public class QuintoAgente extends Agent {
 
                     vCliente.setCajero();
                     id = new AID(); // No es el ID del emisor, es el ID del agente al que se va a enviar
-                    id.setLocalName("cajero");
+                    id.setLocalName("cajero");                                  //prepara el mensaje para el cajero
 
                     // Creación del objeto ACLMessage, es el canal o medio de comunicación para el mensaje
-                    mensaje = new ACLMessage(ACLMessage.REQUEST);
+                    mensaje = new ACLMessage(ACLMessage.REQUEST);               //inicia el mensaje
 
                     //Rellenar los campos necesarios del mensaje
-                    mensaje.setSender(getAID()); // Al agente emisor se le esta asignando su ID
+                    mensaje.setSender(getAID());                                // Al agente emisor se le esta asignando su ID
                     mensaje.setLanguage("Español");
-                    mensaje.addReceiver(id); // Al mensaje se le añade el ide del destinatario
-                    mensaje.setContent(msjString + vCliente.getOpcion()); // Manda el diagnostico y la receta
+                    mensaje.addReceiver(id);                                    // Al mensaje se le añade el ide del destinatario
+                    mensaje.setContent(msjString + vCliente.getOpcion());       // Agrega el contenido
 
                     //Envia el mensaje a los destinatarios
-                    send(mensaje); // Le manda la receta siendo generica o de patente
+                    send(mensaje);                                              //Envía la consulta
 
                     mensaje = blockingReceive();
                     if (mensaje != null) {
-                        msjString = mensaje.getContent(); // Regresa costo
+                        msjString = mensaje.getContent();                       // Regresa costo
                         vCliente.mostrarMensaje("Cajero dice que el costo es de $" + msjString + " más $100 de consulta");
-                        cambio = Integer.parseInt(msjString) + 100;
+                        cambio = Integer.parseInt(msjString) + 100;             //suma 100
                         vCliente.mostrarMensaje("Total a pagar $" + cambio);
 
-                        vCliente.mostrarMensaje("Por favor ingrese la cantidad para pagar $$$");
+                        vCliente.mostrarMensaje("Por favor ingrese la cantidad para pagar $$$");//imprime
 
                         do {
                             esperaRespuesta();
@@ -269,10 +269,10 @@ public class QuintoAgente extends Agent {
                             }
                         } while (vCliente.getOpcion() < cambio || vCliente.getOpcion() > 10000);
 
-                        System.out.println("\nCajero recibe " + vCliente.getOpcion());
-                        vCliente.mostrarMensaje("\nCajero recibe: $" + vCliente.getOpcion());
-                        vServidor.mostrarMensaje("\nCajero recibe: $" + vCliente.getOpcion());
-                        vCliente.setMensaje("\nCajero recibe: $" + vCliente.getOpcion());
+                        System.out.println("\nCajero recibe " + vCliente.getOpcion());//cajero recibe
+                        vCliente.mostrarMensaje("\nCajero recibe: $" + vCliente.getOpcion());//imprime client
+                        vServidor.mostrarMensaje("\nCajero recibe: $" + vCliente.getOpcion());//imprime servidor
+                        vCliente.setMensaje("\nCajero recibe: $" + vCliente.getOpcion());//ve la opcion
                         vCliente.setEnviaMsj(1);
 
                         try {
@@ -282,23 +282,23 @@ public class QuintoAgente extends Agent {
                         }
 
                         int cambio2 = cambio;
-                        vCliente.mostrarMensaje("Cliente paga $" + cambio + " al cajero.");
+                        vCliente.mostrarMensaje("Cliente paga $" + cambio + " al cajero.");//imprime pago
 
-                        cambio = vCliente.getOpcion() - Integer.parseInt(msjString) - 100;
-                        vCliente.mostrarMensaje("Cliente recibe $" + cambio + " de cambio.");
+                        cambio = vCliente.getOpcion() - Integer.parseInt(msjString) - 100;//calcula cambio
+                        vCliente.mostrarMensaje("Cliente recibe $" + cambio + " de cambio.");//imprime el cambio
 
-                        vServidor.mostrarMensaje("\nCajero recibe pago del ciente por $" + cambio2);
-                        vCliente.setMensaje("\nCajero recibe pago del ciente por $" + cambio2);
+                        vServidor.mostrarMensaje("\nCajero recibe pago del ciente por $" + cambio2);//imprime en servidor el pago
+                        vCliente.setMensaje("\nCajero recibe pago del ciente por $" + cambio2);//Cajero recibe el pago 
                         vCliente.setEnviaMsj(1);
 
-                        vCliente.mostrarMensaje("\nCajero da medicinas al cliente.");
+                        vCliente.mostrarMensaje("\nCajero da prendas al cliente.");//Cajero da prendas
 
                         try {
-                            Thread.sleep(tiempoEspera);
+                            Thread.sleep(tiempoEspera);                         //tiempo de espera
                         } catch (InterruptedException ex) {
                             // Nada
                         }
-                        vCliente.mostrarMensaje("Se le da ticket al cliente:\n\n");
+                        vCliente.mostrarMensaje("Se le da ticket al cliente:\n\n");//muestra ticket
 
                         ticket = " === Ticket === \n";
                         costoTotal = 400; // De la consulta
