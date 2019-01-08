@@ -47,8 +47,9 @@ public class QuintoAgente extends Agent {
     private GenerarPDF generarPDF = new GenerarPDF();
     private String ticket = "";
     //private String ruta = "C:\\Users\\Jesus Angeles\\Dropbox\\UAEMex2018B\\Sistemas expertos\\java\\proyecto_final\\Cliente\\ProyExpertosC\\src";
-    private String ruta = "C:\\Users\\iron\\Desktop\\codigo\\Cliente\\ProyExpertosC\\src";
+    private String ruta = "C:\\Users\\iron\\Desktop\\FinalSE\\cliente\\Cliente";
     //C:\Users\iron\Desktop\codigo\codigo\Cliente\ProyExpertosC\src
+    //12001200
     private int costoTotal;
     private int cambio = 0;
     private int masDeUnProd = 0; // si es mas de 1 se tiene mas de un producto comprado
@@ -114,7 +115,7 @@ public class QuintoAgente extends Agent {
                     // Nada
                 }
                 //vServidor.mostrarMensaje("Mostrando menú_______\n");
-                vCliente.setMensaje("Mostrando menú******\n");
+                vCliente.setMensaje("MOSTRANDO MENU\n");
                 vCliente.setEnviaMsj(1);
                 /*
                 System.out.println("Seleccione una opción");
@@ -301,71 +302,73 @@ public class QuintoAgente extends Agent {
                         vCliente.mostrarMensaje("Se le da ticket al cliente:\n\n");//muestra ticket
 
                         ticket = " === Ticket === \n";
-                        costoTotal = 400; // De la consulta
-                        if (msjString.equals("100")) // Jarabe generico
+                        costoTotal = 100; // De la consulta
+                        if (msjString.equals("500")) // Jarabe generico
                         {
-                            ticket = ticket + " pantalon \n";
-                            ticket = ticket + " Costo: $100\n";
+                            ticket = ticket + " Ropa: Camisa clasica \n";       //camisas1
+                            ticket = ticket + " Costo: $500\n";
                             ticket = ticket + " Producto \n";
                             jarabes--;
-                            conexion.setCantidad("camisa", jarabes);
-                            conexion.setVendidos("camisa", conexion.getVendidos("camisa") + 1);
-                            costoTotal = costoTotal + 100;
-                        } else if (msjString.equals("200")) // Jarabe generico
+                            conexion.setCantidad("Jarabe", jarabes);
+                            conexion.setVendidos("Jarabe", conexion.getVendidos("Jarabe") + 1);
+                            costoTotal = costoTotal + 500;
+                        } else if (msjString.equals("550")) // Jarabe generico
                         {
-                            ticket = ticket + " camisa\n";
-                            ticket = ticket + " Costo: $200\n";
-                            ticket = ticket + " camisa\n";
+                            ticket = ticket + " Ropa: Camisa formal\n";         //camisas2
+                            ticket = ticket + " Costo: 550\n";
+                            ticket = ticket + " Producto\n";
                             jarabes--;
-                            conexion.setCantidad("camisa", jarabes);
-                            conexion.setVendidos("camisa", conexion.getVendidos("camisa") + 1);
-                            costoTotal = costoTotal + 200;}
-                        } else if (msjString.equals("220")) // Jarabe generico
+                            conexion.setCantidad("Jarabe", jarabes);
+                            conexion.setVendidos("Jarabe", conexion.getVendidos("Jarabe") + 1);
+                            costoTotal = costoTotal + 550;}
+                        
+                        else if (msjString.equals("600")) // Jarabe generico
                         {
-                            ticket = ticket + " Medicina: Omeprazol \n";
-                            ticket = ticket + " Costo: $220\n";
-                            ticket = ticket + " Producto genérico\n";
+                            ticket = ticket + " Ropa: pantalon clasico\n";      //pantalon1
+                            ticket = ticket + " Costo: $600\n";
+                            ticket = ticket + " Producto \n";
                             omeprazoles--;
                             conexion.setCantidad("Omeprazol", omeprazoles);
                             conexion.setVendidos("Omeprazol", conexion.getVendidos("Omeprazol") + 1);
-                            costoTotal = costoTotal + 220;
-                        } else if (msjString.equals("340")) // Jarabe generico
+                            costoTotal = costoTotal + 600;
+                        } else if (msjString.equals("650")) // Jarabe generico
                         {
-                            ticket = ticket + " Medicina: Omeprazol \n";
-                            ticket = ticket + " Costo: $340\n";
-                            ticket = ticket + " Producto patente\n";
+                            ticket = ticket + " Ropa: Pantalon formal\n";       //pantalon2
+                            ticket = ticket + " Costo: 650\n";
+                            ticket = ticket + " Producto \n";
                             omeprazoles--;
                             conexion.setCantidad("Omeprazol", omeprazoles);
                             conexion.setVendidos("Omeprazol", conexion.getVendidos("Omeprazol") + 1);
-                            costoTotal = costoTotal + 340;
-                        } else if (msjString.equals("180")) // Jarabe generico
+                            costoTotal = costoTotal + 650;
+                        } else if (msjString.equals("1000")) // Jarabe generico
                         {
-                            ticket = ticket + " Medicina: Naproxeno \n";
-                            ticket = ticket + " Costo: $180\n";
-                            ticket = ticket + " Producto genérico\n";
+                            ticket = ticket + " Ropa: Zapatos clasicos \n";     //zapatos1
+                            ticket = ticket + " Costo: $1000\n";
+                            ticket = ticket + " Producto\n";
                             naproxenos--;
                             conexion.setCantidad("Naproxeno", naproxenos);
                             conexion.setVendidos("Naproxeno", conexion.getVendidos("Naproxeno") + 1);
-                            costoTotal = costoTotal + 180;
-                        } else if (msjString.equals("640")) // Jarabe generico
+                            costoTotal = costoTotal + 1000;
+                        } else if (msjString.equals("1200")) 
                         {
-                            ticket = ticket + " Medicina: Naproxeno \n";
-                            ticket = ticket + " Costo: $640\n";
-                            ticket = ticket + " Producto patente\n";
+                            ticket = ticket + " Ropa: Zapatos formal \n";       //zapatos2
+                            ticket = ticket + " Costo: $1200\n";
+                            ticket = ticket + " Producto \n";
                             naproxenos--;
                             conexion.setCantidad("Naproxeno", naproxenos);
                             conexion.setVendidos("Naproxeno", conexion.getVendidos("Naproxeno") + 1);
-                            costoTotal = costoTotal + 640;
+                            costoTotal = costoTotal + 1200;
                         }
-                        ticket = ticket + " Concepto: Consulta médica \n";
-                        ticket = ticket + " Costo: $400\n";
-                        ticket = ticket + " Costo Total: $" + costoTotal + "\n\n";
+                        ticket = ticket + " Concepto: Asesoramiento de imagen\n";//Agrega info al ticket
+                        ticket = ticket + " Costo: $100\n";                     //mas info
+                        ticket = ticket + " Costo Total: $" + costoTotal + "\n\n";//Costo total
 
                         //vCliente.setEtiqueta( " Total = $ " + costoTotal );
-                        vCliente.setTicket();
-                        vCliente.mostrarMensaje(ticket);
+                        vCliente.setTicket();                                   //pone la imagen del ticket     
+                        vCliente.mostrarMensaje(ticket);                        //imprime ticket                        
+                        
+                        }
                     
-
                     // Termina consulta*****************************************************************************************
                 } else {
                     // Opción 2 - Comprar medicinas
@@ -685,7 +688,7 @@ public class QuintoAgente extends Agent {
                         vCliente.mostrarMensaje(ticket);
                     }
                 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////GeneraTicket
                 try {
                     generarPDF.genera(ticket, "Ticket", ruta);
                 } catch (FileNotFoundException | DocumentException ex) {
@@ -707,7 +710,7 @@ public class QuintoAgente extends Agent {
                 vServidor.mostrarMensaje("\nSe ha generado el ticket del cliente en PDF.");
                 vCliente.setMensaje("\nSe ha generado el ticket del cliente en PDF.");
                 vCliente.setEnviaMsj(1);
-
+                /*
                 // Verifica si ya se van a acabar los productos para comprar mas
                 if (jarabes <= 1) {
                     productoFalta = "jarabes";
@@ -882,7 +885,7 @@ public class QuintoAgente extends Agent {
                     }
                 }
                 faltan = 0;
-
+                */
                 vCliente.mostrarMensaje("\nPresione Enter para continuar...");
                 vCliente.meterNum(1);
                 esperaRespuesta();

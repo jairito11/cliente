@@ -48,8 +48,8 @@ public class VCliente extends JFrame
     public VCliente()
     {
         //servidorChat = "192.168.1.2";148.215.12.222
-        servidorChat = "192.168.100.10";
-        //servidorChat = "169.254.193.180";
+        //servidorChat = "192.168.100.10";
+        servidorChat = "169.254.193.180";
         //servidorChat = "127.0.0.1";
         //servidorChat = "192.168.43.239";
         
